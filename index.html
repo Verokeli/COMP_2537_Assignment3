@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- import jQuery -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div id="menu">
+    <div id="difficulty-buttons">
+      <button class="btn" data-level="easy">Easy</button>
+      <button class="btn" data-level="medium">Medium</button>
+      <button class="btn" data-level="hard">Hard</button>
+    </div>
+
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider round"></span>
+    </label>
+    <span id="theme-label">Light Mode</span>
+
+    <div id="game-controls">
+      <button class="btn" id="reset">Reset</button>
+      <button class="btn" id="start">Start!</button>
+      <button class="btn" id="powerup">Power Up</button>
+    </div>
+  </div>
+
+  <div id="status">
+    <p id="total-pairs-text"></p>
+    <p id="matches-text"></p>
+    <p id="pairs-left-text"></p>
+    <p id="clicks-text"></p>
+    <p id="timer-text"></p>
+  </div>
+
+  <div id="game-box">
+    <div id="game_grid"></div>
+  </div>
+
+</body>
+
+</html>
