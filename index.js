@@ -10,11 +10,8 @@ $(document).ready(() => {
     $("#theme-label").text(isDark ? "Dark Mode" : "Light Mode");
   });
 
-
   $("#start").on("click", startGame);
-
   $("#reset").on("click", startGame);
-
   $("#powerup").on("click", () => {
     swal("Power-Up Activated!", "All cards flipped!", "info");
     $(".card").addClass("flip");
@@ -28,7 +25,6 @@ $(document).ready(() => {
     $("[data-level]").removeClass("selected");
     $(this).addClass("selected");
   });
-
 });
 
 function setup() {
@@ -83,7 +79,6 @@ function changeStatus() {
   $("#clicks-text").text(`Number of Clicks: ${clickCount}`);
   $("#timer-text").text(`You got ${initialTime} seconds. ${initialTime - timeLeft} seconds passed!`);
 }
-
 
 async function fetchPokemonImages(count) {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1025');
@@ -143,6 +138,11 @@ function setupTimer() {
   $("#timer").text(timeLeft);
   timerInterval = setInterval(() => {
     timeLeft--;
+
+    const now = new Date();
+    const formatted = now.toLocaleTimeString();
+    $("#current-time-text").text(`Current Time: ${formatted}`);
+    
     $("#timer").text(timeLeft);
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
