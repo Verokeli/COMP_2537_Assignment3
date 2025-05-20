@@ -100,7 +100,8 @@ async function fetchPokemonImages(count) {
   const imageUrls = await Promise.all(selected.map(async (id) => {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const info = await res.json();
-    return info.sprites.other["official-artwork"].front_default || "https://via.placeholder.com/150";
+    const sprite = info.sprites.other["official-artwork"].front_default;
+    return sprite ? sprite : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
   }));
 
   return imageUrls;
