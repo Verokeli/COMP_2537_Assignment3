@@ -19,22 +19,23 @@ body {
 }
 
 .btn {
-  background-color: #007bff;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  margin: 5px;
-  font-size: 1rem;
-  border-radius: 5px;
+  border: 2px solid #D7D6F0;
+  background-color: #D7D6F0;
+  border-radius: 25px;
+  padding: 8px 14px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0px 6px 15px var(--btn-shadow);
 }
 
 .selected {
-  background-color: #0056b3;
+  background-color: #B1B0D8;
 }
 
 #status {
@@ -83,8 +84,6 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-
-/* 6 cards per row */
 #game_grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -116,7 +115,6 @@ input:checked + .slider:before {
   transform: rotateY(180deg);
 }
 
-/* Change theme */
 .dark-theme {
   background-color: #121212;
   color: #f0f0f0;
@@ -159,6 +157,6 @@ input:checked + .slider:before {
 
 @media (max-width: 768px) {
   #game_grid {
-    grid-template-columns: repeat(3, 1fr); /* stack 3 per row on phones */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
