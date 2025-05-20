@@ -1,3 +1,4 @@
+// global variables track the entire game state
 let timerInterval, timeLeft, clickCount = 0, matchedPairs = 0, totalPairs;
 let firstCard, secondCard;
 let lockBoard = false;
@@ -59,8 +60,7 @@ function setup() {
       setTimeout(() => {
         clearInterval(timerInterval);
         swal({
-          title: "🎉 You Win!",
-          text: `You matched all ${totalPairs} pairs!`,
+          title: "You Win!", // Sweet Alert
           icon: "success",
           button: "Play Again"
         }).then(() => {
@@ -72,14 +72,16 @@ function setup() {
   });
 }
 
+// number of total pairs, matched pairs, remaining pairs, total clicks, and time remaining
 function changeStatus() {
   $("#total-pairs-text").text(`Total Number of Pairs: ${totalPairs}`);
   $("#matches-text").text(`Number of Matches: ${matchedPairs}`);
   $("#pairs-left-text").text(`Number of Pairs Left: ${totalPairs - matchedPairs}`);
   $("#clicks-text").text(`Number of Clicks: ${clickCount}`);
-  $("#timer-text").text(`You got ${initialTime} seconds. ${initialTime - timeLeft} seconds passed!`);
+  $("#timer-text").text(`You got ${initialTime} seconds. Time Left: ${timeLeft}s`);
 }
 
+// the Pokémon API used to retrieve the images for the cards
 async function fetchPokemonImages(count) {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1025');
   const data = await response.json();
@@ -89,7 +91,7 @@ async function fetchPokemonImages(count) {
     const rand = Math.floor(Math.random() * data.results.length);
     const pokeUrl = data.results[rand].url;
     const id = pokeUrl.split("/").filter(Boolean).pop();
-    selected.push(id);
+
     if (!selected.includes(id)) {
       selected.push(id);
     }
@@ -142,11 +144,17 @@ function setupTimer() {
     const now = new Date();
     const formatted = now.toLocaleTimeString();
     $("#current-time-text").text(`Current Time: ${formatted}`);
-    
-    $("#timer").text(timeLeft);
+
+    changeStatus();
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      alert("Game Over!");
+      swal({
+        title: "Time's Up!",
+        icon: "error",
+        button: "Retry"
+      }).then(() => {
+        startGame();
+      });
       $(".card").off("click");
     }
   }, 1000);
